@@ -37,7 +37,7 @@ public class CommandLMove : Command //왼쪽이동
     void LMove()
     {
         targetTransform.position += Vector3.left * 2f * Time.deltaTime;
-        Ani.SetIsRunning()
+        
         Debug.Log("L이동");
     }
 }
