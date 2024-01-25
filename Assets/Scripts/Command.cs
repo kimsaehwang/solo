@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,7 @@ using UnityEngine;
 
 public class Command 
 {
-    PlayerAnimation Ani;
-    Rigidbody Rig;
-
-    public int dir;
-    bool IsMove;
-    bool IsJump;
+    
 
     public virtual void Execute() { }
 }
@@ -18,10 +14,20 @@ public class Command
 
 public class CommandLMove : Command //왼쪽이동
 {
+    PlayerAnimation Ani;
+    Rigidbody Rig;
+    public int dir;
+    bool IsRunning;
     private void Awake()
     {
-        
+        Ani = GetComponent<PlayerAnimation>();
     }
+
+    private T GetComponent<T>()
+    {
+        throw new NotImplementedException();
+    }
+
     private Transform targetTransform;
     bool IsMoving;
     public CommandLMove(Transform targetTransform)
@@ -36,6 +42,7 @@ public class CommandLMove : Command //왼쪽이동
 
     void LMove()
     {
+        Ani.SetIsRunning(IsRunning);
         targetTransform.position += Vector3.left * 2f * Time.deltaTime;
         
         Debug.Log("L이동");
